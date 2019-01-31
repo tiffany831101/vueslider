@@ -5,7 +5,7 @@
     <Slides :images="images[chooseImage]"/>
     <div class="arrowRight" @click="arrowRight()"></div>
     <div class="squares">
-      <div @click="square(image.id)" v-for="image in images" :key="image.id" :style="setColor"></div>
+      <div @click="square(image.id)" v-for="image in images" :key="image.id"></div>
     </div>
   </div>
 </template>
