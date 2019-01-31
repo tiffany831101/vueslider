@@ -21,28 +21,27 @@ export default {
       images: [
         {
           id: 0,
-          url:
-            "https://images.pexels.com/photos/36759/graffiti-berlin-wall-wall-trabi.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+          url: "http://18.225.4.201:8080/static/image1.jpeg",
           title: "one"
         },
         {
           id: 1,
-          url: "../../images/image2.jpeg",
+          url: "http://18.225.4.201:8080/static/image2.jpg",
           title: "two"
         },
         {
           id: 2,
-          url: "../../images/image3.jpeg",
+          url: "http://18.225.4.201:8080/static/image3.jpeg",
           title: "three"
         },
         {
           id: 3,
-          url: "../../images/image4.jpeg",
+          url: "http://18.225.4.201:8080/static/image4.jpeg",
           title: "four"
         },
         {
           id: 4,
-          url: "../../images/image5.jpeg",
+          url: "http://18.225.4.201:8080/static/image5.jpeg",
           title: "five"
         }
       ],
