@@ -1,9 +1,7 @@
 <template>
   <!-- {{images.url}} -->
   <transition-group name="fade" mode="out in" tag="div" id="slides">
-    <div class="slideImage" :style="setBackgroundImage" :key="images.id">
-      <div class="slideTitle"></div>
-    </div>
+    <div class="slideImage" :style="setBackgroundImage" :key="images.id"></div>
   </transition-group>
 </template>
 
@@ -21,24 +19,6 @@ export default {
 </script>
 
 <style>
-#slides .slideImage {
-  height: 100vh;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#slides .slideImage .slideTitle {
-  color: red;
-  font-weight: bold;
-  font-size: 40px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .fade-enter-active {
   animation-name: fadeEnter;
   animation-duration: 1s;
@@ -46,14 +26,46 @@ export default {
 }
 
 .fade-move {
-  transition: all 1s;
+  transition: all 0.5s;
 }
 
 .fade-leave-active {
   animation-name: fadeLeave;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-iteration-count: 1;
   position: absolute;
+  background: #000;
+}
+
+/*   */
+
+#slides .slideImage {
+  margin: 0 auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: drop-shadow(-5px 5px 4px grey);
+  border: 0.5rem solid white;
+  height: 50vh;
+  width: 60%;
+}
+
+/* @media screen and (min-width: 792px) {
+  body {
+    background-color: red;
+  }
+  #slides .slideImage {
+    border: 0.5rem solid white;
+    height: 50vh;
+    width: 60%;
+  }
+} */
+
+@media screen and (max-width: 1034px) {
+  #slides .slideImage {
+    width: 70%;
+    height: 40vh;
+  }
 }
 
 @keyframes fadeEnter {
@@ -72,7 +84,7 @@ export default {
   }
 
   to {
-    opacity: 0;
+    opacity: 0.3;
   }
 }
 </style>

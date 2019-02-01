@@ -1,11 +1,19 @@
 <template>
   <div id="slider">
-    <div class="arrowLeft" @click="arrowLeft()"></div>
-    <!-- 子組件 -->
+    <div class="arrowLeft" @click="arrowLeft()">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <!-- 子組件傳入目前的圖片，chooseImage代表目前的index -->
     <Slides :images="images[chooseImage]"/>
-    <div class="arrowRight" @click="arrowRight()"></div>
+    <div class="arrowRight" @click="arrowRight()">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+    <!-- 下 -->
     <div class="squares">
-      <div @click="square(image.id)" v-for="image in images" :key="image.id"></div>
+      <div @click="square(image.id)" v-for="image in images" :key="image.id">
+        <!-- hover過去會產生縮圖 -->
+        <img class="thumbnail" :src="image.url" alt>
+      </div>
     </div>
   </div>
 </template>
@@ -15,6 +23,13 @@ import Slides from "./Slides.vue";
 export default {
   components: {
     Slides
+  },
+  computed: {
+    thumbnail() {
+      return {
+        backgroundImage: "url(" + image.url + ")"
+      };
+    }
   },
   data() {
     return {
@@ -53,11 +68,12 @@ export default {
   methods: {
     //目前點到的變成灰色，可避免重複code，之後要改顏色較方便
     chosenBlock(id) {
-      this.$el.children[3].children[id].style.backgroundColor = "grey";
+      this.$el.children[3].children[id].style.opacity = 1;
     },
     //其他的初始化為黑色
     initializeBlock(id) {
-      this.$el.children[3].children[id].style.backgroundColor = "black";
+      //   console.log(this.$el.children);
+      this.$el.children[3].children[id].style.opacity = 0.3;
     },
     //click事件傳入目前的image.id
     square(id) {
@@ -137,48 +153,87 @@ export default {
 /* google font */
 * {
   font-family: "Raleway", sans-serif;
+  box-sizing: border-box;
 }
 #slider {
+  margin-top: 2em;
   position: relative;
 }
 #slider .arrowLeft,
 #slider .arrowRight {
   position: absolute;
   top: 50%;
-  border: 30px solid transparent;
+
+  color: black;
+  font-size: 3em;
+  /* border: 30px solid transparent; */
   cursor: pointer;
+  transform: translateY(-50%);
 }
 
 #slider .arrowLeft {
-  border-right-color: black;
+  left: 10%;
   z-index: 1;
   filter: drop-shadow(5px 5px 4px grey);
 }
 
 #slider .arrowRight {
-  border-left-color: black;
-  right: 0;
+  right: 10%;
   filter: drop-shadow(-5px 5px 4px grey);
 }
 
 #slider .squares {
-  position: absolute;
+  width: 60%;
+  /* position: absolute; */
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
   margin: 0 auto;
+  margin-top: 2em;
   right: 0;
   left: 0;
-  bottom: 2rem;
+  /* bottom: -5rem; */
 }
 
 #slider .squares div {
-  width: 1.5rem;
+  position: relative;
+  /* width: 20%; */
+  /* width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background-color: black;
+  background-color: black; */
+
   text-align: center;
   margin: 0 0.75rem;
   color: black;
   cursor: pointer;
 }
+
+/* hover過去會產生縮圖  */
+.thumbnail {
+  width: 100px;
+  height: 75px;
+  border: 0.5rem solid black;
+  /* position: absolute; */
+  /* display: none; */
+  /* bottom: -5rem; */
+  /* right: 50; */
+  /* transform: translateX(-50%); */
+  /* opacity: 0.8; */
+}
+
+@media screen and (max-width: 1034px) {
+  .thumbnail {
+    display: none;
+  }
+
+  #slider .squares div {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: black;
+  }
+}
 </style>
+
+
