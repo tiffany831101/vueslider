@@ -150,7 +150,6 @@ export default {
 </script>
 
 <style>
-/* google font */
 * {
   font-family: "Raleway", sans-serif;
   box-sizing: border-box;
@@ -163,10 +162,8 @@ export default {
 #slider .arrowRight {
   position: absolute;
   top: 50%;
-
   color: black;
   font-size: 3em;
-  /* border: 30px solid transparent; */
   cursor: pointer;
   transform: translateY(-50%);
 }
@@ -184,7 +181,6 @@ export default {
 
 #slider .squares {
   width: 60%;
-  /* position: absolute; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -192,34 +188,18 @@ export default {
   margin-top: 2em;
   right: 0;
   left: 0;
-  /* bottom: -5rem; */
 }
 
 #slider .squares div {
   position: relative;
-  /* width: 20%; */
-  /* width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  background-color: black; */
-
-  text-align: center;
   margin: 0 0.75rem;
-  color: black;
   cursor: pointer;
 }
 
-/* hover過去會產生縮圖  */
 .thumbnail {
   width: 100px;
   height: 75px;
   border: 0.5rem solid black;
-  /* position: absolute; */
-  /* display: none; */
-  /* bottom: -5rem; */
-  /* right: 50; */
-  /* transform: translateX(-50%); */
-  /* opacity: 0.8; */
 }
 
 @media screen and (max-width: 1034px) {

@@ -37,8 +37,6 @@ export default {
   background: #000;
 }
 
-/*   */
-
 #slides .slideImage {
   margin: 0 auto;
   background-position: center;
@@ -49,17 +47,6 @@ export default {
   height: 50vh;
   width: 60%;
 }
-
-/* @media screen and (min-width: 792px) {
-  body {
-    background-color: red;
-  }
-  #slides .slideImage {
-    border: 0.5rem solid white;
-    height: 50vh;
-    width: 60%;
-  }
-} */
 
 @media screen and (max-width: 1034px) {
   #slides .slideImage {
