@@ -11,7 +11,7 @@ export default {
   computed: {
     setBackgroundImage() {
       return {
-        backgroundImage: "url(" + this.images.url + ")"
+        backgroundImage: `url("${this.images.url}")`
       };
     }
   }
