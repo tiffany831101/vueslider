@@ -1,5 +1,5 @@
 <template>
-  <!-- {{images.url}} -->
+  <!-- mode:out-in上一個圖片先漸變離開，下一張圖片再漸變出現  -->
   <transition-group name="fade" mode="out in" tag="div" id="slides">
     <div class="slideImage" :style="setBackgroundImage" :key="images.id"></div>
   </transition-group>

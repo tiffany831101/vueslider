@@ -60,17 +60,19 @@ export default {
           title: "five"
         }
       ],
+      //目前選到的index
       chooseImage: 0,
+      //setInterval
       intervalObject: null
     };
   },
 
   methods: {
-    //目前點到的變成灰色，可避免重複code，之後要改顏色較方便
+    //目前點到的變成透明度1，可避免重複code，之後要改顏色較方便
     chosenBlock(id) {
       this.$el.children[3].children[id].style.opacity = 1;
     },
-    //其他的初始化為黑色
+    //其他的初始化為透明
     initializeBlock(id) {
       //   console.log(this.$el.children);
       this.$el.children[3].children[id].style.opacity = 0.3;
@@ -107,13 +109,15 @@ export default {
     arrowRight() {
       //清除事件
       clearInterval(this.intervalObject);
+      // 執行了向右一個之後
       this.moveRight();
-
+      //繼續setInterval
       this.intervalObject = setInterval(() => {
         this.moveRight();
       }, 4000);
     },
     moveRight() {
+      //透明度設定
       for (let i = 0; i < this.images.length; i++) {
         this.initializeBlock(i);
       }
@@ -140,6 +144,7 @@ export default {
       this.chosenBlock(imageIndex);
     }
   },
+  //template已經掛載，data裡面還沒有掛載到template
   created() {
     //自動輪播，每4秒輪播
     this.intervalObject = setInterval(() => {
@@ -151,13 +156,14 @@ export default {
 
 <style>
 * {
-  font-family: "Raleway", sans-serif;
+  font-family: "Playfair Display", serif;
   box-sizing: border-box;
 }
 #slider {
   margin-top: 2em;
   position: relative;
 }
+
 #slider .arrowLeft,
 #slider .arrowRight {
   position: absolute;
@@ -201,7 +207,7 @@ export default {
   height: 75px;
   border: 0.5rem solid black;
 }
-
+/* 在1034以下，圖片消失，變成圓圈 */
 @media screen and (max-width: 1034px) {
   .thumbnail {
     display: none;
