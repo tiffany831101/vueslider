@@ -33,33 +33,7 @@ export default {
   },
   data() {
     return {
-      images: [
-        {
-          id: 0,
-          url: "http://18.225.4.201:8080/static/image1.jpeg",
-          title: "one"
-        },
-        {
-          id: 1,
-          url: "http://18.225.4.201:8080/static/image2.jpg",
-          title: "two"
-        },
-        {
-          id: 2,
-          url: "http://18.225.4.201:8080/static/image3.jpeg",
-          title: "three"
-        },
-        {
-          id: 3,
-          url: "http://18.225.4.201:8080/static/image4.jpeg",
-          title: "four"
-        },
-        {
-          id: 4,
-          url: "http://18.225.4.201:8080/static/image5.jpeg",
-          title: "five"
-        }
-      ],
+      images: [],
       //目前選到的index
       chooseImage: 0,
       //setInterval
@@ -150,6 +124,23 @@ export default {
     this.intervalObject = setInterval(() => {
       this.moveRight();
     }, 4000);
+  },
+  mounted() {
+    axios
+      .get(
+        "https://newsapi.org/v2/everything?q=social&page=1&apiKey=00bbb1d312884ea59975c695f7c687f1"
+      )
+      .then(response => {
+        this.images = response.data.articles
+          .filter((image, index) => index < 5)
+          .map((image, index) => ({
+            id: index,
+            url: image.urlToImage
+          }));
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 };
 </script>
