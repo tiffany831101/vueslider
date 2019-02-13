@@ -10,7 +10,12 @@
     </div>
     <!-- 下 -->
     <div class="squares">
-      <div @click="square(image.id)" v-for="image in images" :key="image.id">
+      <div
+        @click="square(image.id)"
+        v-for="image in images"
+        :key="image.id"
+        :style="changeColor(image.id)"
+      >
         <!-- hover過去會產生縮圖 -->
         <img class="thumbnail" :src="image.url" alt>
       </div>
@@ -42,22 +47,16 @@ export default {
   },
 
   methods: {
-    //目前點到的變成透明度1，可避免重複code，之後要改顏色較方便
-    chosenBlock(id) {
-      this.$el.children[3].children[id].style.opacity = 1;
-    },
-    //其他的初始化為透明
-    initializeBlock(id) {
-      //   console.log(this.$el.children);
-      this.$el.children[3].children[id].style.opacity = 0.3;
-    },
-    //click事件傳入目前的image.id
-    square(id) {
-      //讓其他沒有被點到的回到黑色
-      for (let i = 0; i < this.images.length; i++) {
-        this.initializeBlock(i);
+    //目前的image會透明度變1
+    changeColor(id) {
+      //如果當前的id跟thumbnail的id是同一個，則透明度變1
+      if (this.chooseImage == id) {
+        return {
+          opacity: 1
+        };
       }
-      this.chosenBlock(id);
+    },
+    square(id) {
       //讓chooseImage變成目前點到的id，以傳入子組件
       this.chooseImage = id;
       //清除interval事件
@@ -73,7 +72,6 @@ export default {
       clearInterval(this.intervalObject);
       //執行回上一個
       this.moveLeft();
-      //   let self = this;
       //繼續回到原本輪播狀態，倒著播
       this.intervalObject = setInterval(() => {
         this.moveLeft();
@@ -91,10 +89,6 @@ export default {
       }, 4000);
     },
     moveRight() {
-      //透明度設定
-      for (let i = 0; i < this.images.length; i++) {
-        this.initializeBlock(i);
-      }
       let imageIndex = this.chooseImage;
       imageIndex++;
       //如果大於最大的index，返回到第一個
@@ -102,12 +96,8 @@ export default {
         imageIndex = 0;
       }
       this.chooseImage = imageIndex;
-      this.chosenBlock(imageIndex);
     },
     moveLeft() {
-      for (let i = 0; i < this.images.length; i++) {
-        this.initializeBlock(i);
-      }
       let imageIndex = this.chooseImage;
       imageIndex--;
       if (imageIndex < 0) {
@@ -115,7 +105,6 @@ export default {
         imageIndex = this.images.length - 1;
       }
       this.chooseImage = imageIndex;
-      this.chosenBlock(imageIndex);
     }
   },
   //template已經掛載，data裡面還沒有掛載到template
@@ -191,6 +180,7 @@ export default {
   position: relative;
   margin: 0 0.75rem;
   cursor: pointer;
+  opacity: 0.3;
 }
 
 .thumbnail {
