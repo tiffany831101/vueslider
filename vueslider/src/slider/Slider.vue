@@ -29,13 +29,6 @@ export default {
   components: {
     Slides
   },
-  computed: {
-    thumbnail() {
-      return {
-        backgroundImage: "url(" + image.url + ")"
-      };
-    }
-  },
   data() {
     return {
       images: [],
